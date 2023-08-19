@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, verbose_name=_("title_category"))
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -13,9 +14,10 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.title
 
+
 class Post(models.Model):
     image = models.ImageField(upload_to="images/", blank=True)
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, verbose_name=_('title_post'))
     summary = models.CharField(max_length=350)
     body = models.TextField()
     category = models.ManyToManyField(Category, related_name="posts")
@@ -27,7 +29,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-
+        verbose_name = _('Post')
+        verbose_name_plural = _('Posts')
 
     @property
     def image_url(self):
@@ -35,8 +38,6 @@ class Post(models.Model):
             return self.image.url
         except ValueError:
             return "https://storage.kun.uz/source/thumbnails/_medium/9/-s_RNFKgzfyXrRpnqL6puF3vnKf68uF-_medium.jpg"
-    
 
     def __str__(self) -> str:
         return self.title
-    

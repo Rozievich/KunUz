@@ -1,14 +1,14 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from .models import Category, Post
 
-class PostTranslationAdmin(TranslationAdmin):
-    pass
-admin.register(Post, PostTranslationAdmin)
+from .models import Post, Category
 
-# class PostModelAdmin(admin.ModelAdmin):
-#     list_display = ("title", "author", "active")
+
+@admin.register(Post)
+class PostModelAdmin(TranslationAdmin):
+    list_display = ('title_uz', 'active')
+
 
 @admin.register(Category)
-class CategoryModelAdmin(admin.ModelAdmin):
-    list_display = ("title", "created_at")
+class CategoryModelAdmin(TranslationAdmin):
+    list_display = ('title', 'title_en', 'title_ru')

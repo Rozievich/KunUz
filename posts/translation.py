@@ -1,7 +1,12 @@
-# from modeltranslation.translator import TranslationOptions, translator
-# from .models import Post, Category
+from modeltranslation.translator import register, TranslationOptions
+from .models import Post, Category
 
-# # class PostTranslation(TranslationOptions):
-# #     fields = '',
-    
-# # translator.register(Post, PostTranslation)
+
+@register(Post)
+class PostTranslationOptions(TranslationOptions):
+    fields = ('title', 'summary', 'body')
+
+
+@register(Category)
+class CategoryTranslationOptions(TranslationOptions):
+    fields = ('title',)

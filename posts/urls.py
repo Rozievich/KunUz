@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CategoryListCreateAPIView, PostViewSet, PostListCreateView, UserViewSet, UserActiveListCreateAPIView, PostFilterApiView, PostSearchApiView
+from .views import CategoryListCreateAPIView, PostViewSet, PostListCreateView, UserViewSet, UserActiveListCreateAPIView, \
+    PostFilterApiView, PostSearchApiView
 
 router = DefaultRouter()
 router.register("posts", PostViewSet, basename="posts")
@@ -14,4 +15,3 @@ urlpatterns = [
     path('users/<int:pk>/change/', UserActiveListCreateAPIView.as_view(), name="users_change"),
     path('', include(router.urls))
 ]
-
