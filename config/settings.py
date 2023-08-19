@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from datetime import timedelta
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,12 +24,14 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework',
     'django_filters',
+    'modeltranslation',
     'drf_yasg',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "django.middleware.locale.LocaleMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -118,6 +121,21 @@ REST_FRAMEWORK = {
 }
 
 LANGUAGE_CODE = 'en-us'
+
+LANGUAGES = (
+    ('uz', _('Uzbek')),
+    ('en', _('English')),
+    ('ru', _('Russian')),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'posts.translation',
+)
+
+
 
 TIME_ZONE = 'Asia/Tashkent'
 

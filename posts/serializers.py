@@ -18,6 +18,12 @@ class PostModelSerializer(ModelSerializer):
         fields = "id", "image", "title", "summary", "body", "views", "category", "active", "created_at", "author"
 
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['author'] = UserModelSerializer(instance.author).data['username']
+        return data
+    
+
 class PostActiveModelSerilizer(ModelSerializer):
     class Meta:
         model = Post

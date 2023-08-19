@@ -14,3 +14,4 @@ urlpatterns = [
     path('users/<int:pk>/change/', UserActiveListCreateAPIView.as_view(), name="users_change"),
     path('', include(router.urls))
 ]
+

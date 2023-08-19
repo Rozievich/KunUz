@@ -14,7 +14,7 @@ class Category(models.Model):
         return self.title
 
 class Post(models.Model):
-    image = models.ImageField(upload_to="post/images/", blank=True)
+    image = models.ImageField(upload_to="images/", blank=True)
     title = models.CharField(max_length=128)
     summary = models.CharField(max_length=350)
     body = models.TextField()
